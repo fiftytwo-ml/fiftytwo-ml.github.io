@@ -6,36 +6,28 @@
     <title>SPY</title>
     <script>
         function updateChart(){
-            var element1 = document.getElementById("tech");
+            var element1 = document.getElementById("info");
             var element2 = document.getElementById("chart");
-            if (element1 != null && element2 != null){
-                element1.parentNode.removeChild(element1);
+            if (element2 != null){
+                if(element1 != null){
+                    element1.parentNode.removeChild(element1);
+                }
                 element2.parentNode.removeChild(element2);
             }
 
             var e = document.getElementById("ddlViewBy");
             var ticker = e.options[e.selectedIndex].value;
-            tech = {
-                "interval": "1W",
-                "width": "100%",
-                "height": "100%",
-                "isTransparent": false,
-                "symbol": ticker,
-                "showIntervalTabs": true,
-                "locale": "en",
-                "colorTheme": "light"
-            }
             
             chart = {
                 "symbol": ticker,
                 "width": "100%",
-                "height": "30",
+                "height": "100%",
                 "locale": "en",
                 "dateRange": "12m",
                 "colorTheme": "light",
                 "trendLineColor": "#37a6ef",
                 "underLineColor": "#E3F2FD",
-                "isTransparent": false,
+                "isTransparent": true,
                 "autosize": true,
                 "largeChartUrl": ""
             }
@@ -44,18 +36,70 @@
             script2.type = "text/javascript";
             script2.setAttribute("async", "");
             script2.setAttribute("id", "chart");
-            script2.text = JSON.stringify(tech);
+            script2.text = JSON.stringify(chart);
             script2.src= 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
             document.getElementById('chartDiv').appendChild(script2);
+            
+        }
+        function gotoFin(){
+            var element1 = document.getElementById("info");
+            if(element1 != null){
+                element1.parentNode.removeChild(element1);
+            }
+            var script= document.createElement('script');
+            
+            var e = document.getElementById("ddlViewBy");
+            var ticker = e.options[e.selectedIndex].value;
 
-            var script1= document.createElement('script');
-            script1.type = "text/javascript";
-            script1.setAttribute("async", "");
-            script1.setAttribute("id", "tech");
-            script1.text = JSON.stringify(tech);
-            script1.src= 'https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js';
-            document.getElementById('techDiv').appendChild(script1);
-        }    
+            script.src= 'https://s3.tradingview.com/external-embedding/embed-widget-financials.js';
+            info = {                
+                "symbol": ticker,
+                "colorTheme": "light",
+                "isTransparent": true,
+                "largeChartUrl": "",
+                "displayMode": "compact",
+                "width": "100%",
+                "height": "100%",
+                "locale": "en"
+            }
+            script.type = "text/javascript";
+            script.setAttribute("async", "");
+            script.setAttribute("id", "info");
+            script.text = JSON.stringify(info);
+            document.getElementById('infoDiv').appendChild(script);
+
+            document.getElementById('menu').setAttribute("hidden","false");
+        }
+        
+        function gotoTech(){
+            var element1 = document.getElementById("info");
+            if(element1 != null){
+                element1.parentNode.removeChild(element1);
+            }
+            var script= document.createElement('script');
+
+            var e = document.getElementById("ddlViewBy");
+            var ticker = e.options[e.selectedIndex].value;
+
+            script.src= 'https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js';
+            info = {
+                "symbol": ticker,
+                "interval": "1W",
+                "width": "100%",
+                "height": "100%",
+                "isTransparent": true,
+                "showIntervalTabs": true,
+                "locale": "en",
+                "colorTheme": "light"
+            }
+            script.type = "text/javascript";
+            script.setAttribute("async", "");
+            script.setAttribute("id", "info");
+            script.text = JSON.stringify(info);
+            document.getElementById('infoDiv').appendChild(script);
+
+            document.getElementById('menu').style.display = "block";
+        }
     </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -65,27 +109,35 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h1">Mike's Indicators</span>
+        <form class="form-inline my-2 my-lg-0">
+            <select id="ddlViewBy" onchange="updateChart()" class="custom-select">
+                <option value="" selected="selected">Pick ticker</option>
+                <option value="AMEX:SPY">SPY</option>
+                <option value="NASDAQ:AAPL">AAPL</option>
+                <option value="NASDAQ:FB">FB</option>
+                <option value="NASDAQ:MSFT">MSFT</option>
+                <option value="NASDAQ:NFLX">NFLX</option>
+                <option value="NASDAQ:AMZN">AMZN</option>
+                <option value="NASDAQ:GOOG">GOOG</option>
+            </select>
+        </form>
 </nav>
 
-<div class="container" style="margin-top: 10px;">
-    <select id="ddlViewBy" onchange="updateChart()" class="custom-select">
-        <option value="" selected="selected">Pick ticker</option>
-        <option value="AMEX:SPY">SPY</option>
-        <option value="NASDAQ:AAPL">AAPL</option>
-        <option value="NASDAQ:FB">FB</option>
-        <option value="NASDAQ:MSFT">MSFT</option>
-        <option value="NASDAQ:NFLX">NFLX</option>
-        <option value="NASDAQ:AMZN">AMZN</option>
-        <option value="NASDAQ:GOOG">GOOG</option>
-    </select>
-    <div style="height:200px;">
-        <div id ="chartDiv" class="tradingview-widget-container" style="height: 30px; margin-top: 10px;">
+<div>
+    <div style="height:150px;">
+        <div id ="chartDiv" class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
         </div>
     </div>
+    
+    <div id="menu" class="d-flex bd-highlight" style="text-align: center; display: none;">
+        <!-- <div class="p-2 flex-fill bd-highlight"><a class="page-link m-0" href="#">News</a></div> -->
+        <div class="p-2 flex-fill bd-highlight"><a class="page-link m-0" href="#" onclick="gotoFin()">Financial</a></div>
+        <div class="p-2 flex-fill bd-highlight"><a class="page-link m-0" href="#" onclick="gotoTech()">Technical</a></div>
+    </div>
 
     <div style="height:375px;">
-        <div id="techDiv" class="tradingview-widget-container" style="height: 360px; margin-top: 10px;">
+        <div id="infoDiv" class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
         </div>
     </div>

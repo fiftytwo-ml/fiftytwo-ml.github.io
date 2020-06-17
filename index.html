@@ -1,174 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SPY</title>
     <script>
-        function updateChart(){
-            var element1 = document.getElementById("info");
-            var element2 = document.getElementById("chart");
-            if (element2 != null){
-                if(element1 != null){
-                    element1.parentNode.removeChild(element1);
-                }
-                element2.parentNode.removeChild(element2);
-            }
-
-            var e = document.getElementById("ddlViewBy");
-            var ticker = e.options[e.selectedIndex].value;
-            
-            chart = {
-                "symbol": ticker,
-                "width": "100%",
-                "height": "100%",
-                "locale": "en",
-                "dateRange": "12m",
-                "colorTheme": "light",
-                "trendLineColor": "#37a6ef",
-                "underLineColor": "#E3F2FD",
-                "isTransparent": true,
-                "autosize": true,
-                "largeChartUrl": ""
-            }
-
-            var script2= document.createElement('script');
-            script2.type = "text/javascript";
-            script2.setAttribute("async", "");
-            script2.setAttribute("id", "chart");
-            script2.text = JSON.stringify(chart);
-            script2.src= 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
-            document.getElementById('chartDiv').appendChild(script2);
-            gotoBrief()
-        }
-        function gotoFin(){
-            var element1 = document.getElementById("info");
-            if(element1 != null){
-                element1.parentNode.removeChild(element1);
-            }
-            var script= document.createElement('script');
-            
-            var e = document.getElementById("ddlViewBy");
-            var ticker = e.options[e.selectedIndex].value;
-
-            script.src= 'https://s3.tradingview.com/external-embedding/embed-widget-financials.js';
-            info = {                
-                "symbol": ticker,
-                "colorTheme": "light",
-                "isTransparent": true,
-                "largeChartUrl": "",
-                "displayMode": "compact",
-                "width": "100%",
-                "height": "100%",
-                "locale": "en"
-            }
-            script.type = "text/javascript";
-            script.setAttribute("async", "");
-            script.setAttribute("id", "info");
-            script.text = JSON.stringify(info);
-            document.getElementById('infoDiv').appendChild(script);
-
-            document.getElementById('menu').setAttribute("hidden","false");
-        }
-        
-        function gotoTech(){
-            var element1 = document.getElementById("info");
-            if(element1 != null){
-                element1.parentNode.removeChild(element1);
-            }
-            var script= document.createElement('script');
-
-            var e = document.getElementById("ddlViewBy");
-            var ticker = e.options[e.selectedIndex].value;
-
-            script.src= 'https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js';
-            info = {
-                "symbol": ticker,
-                "interval": "1W",
-                "width": "100%",
-                "height": "100%",
-                "isTransparent": true,
-                "showIntervalTabs": true,
-                "locale": "en",
-                "colorTheme": "light"
-            }
-            script.type = "text/javascript";
-            script.setAttribute("async", "");
-            script.setAttribute("id", "info");
-            script.text = JSON.stringify(info);
-            document.getElementById('infoDiv').appendChild(script);
-
-            document.getElementById('menu').style.display = "block";
+      function updateChart() {
+        var element1 = document.getElementById("info");
+        var element2 = document.getElementById("chart");
+        if (element2 != null) {
+          if (element1 != null) {
+            element1.parentNode.removeChild(element1);
+          }
+          element2.parentNode.removeChild(element2);
         }
 
-        function gotoBrief(){
-            var element1 = document.getElementById("info");
-            if(element1 != null){
-                element1.parentNode.removeChild(element1);
-            }
-            var script= document.createElement('script');
+        var e = document.getElementById("ddlViewBy");
+        var ticker = e.options[e.selectedIndex].value;
 
-            var e = document.getElementById("ddlViewBy");
-            var ticker = e.options[e.selectedIndex].value;
+        chart = {
+          symbol: ticker,
+          width: "100%",
+          height: "100%",
+          locale: "en",
+          dateRange: "12m",
+          colorTheme: "light",
+          trendLineColor: "#37a6ef",
+          underLineColor: "#E3F2FD",
+          isTransparent: true,
+          autosize: true,
+          largeChartUrl: "",
+        };
 
-            script.src= 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js';
-            info = {
-                "symbol": ticker,
-                "width": "100%",
-                "height": "100%",
-                "colorTheme": "light",
-                "isTransparent": false,
-                "locale": "en"
-            }
-            script.type = "text/javascript";
-            script.setAttribute("async", "");
-            script.setAttribute("id", "info");
-            script.text = JSON.stringify(info);
-            document.getElementById('infoDiv').appendChild(script);
-
-            document.getElementById('menu').style.display = "block";
+        var script2 = document.createElement("script");
+        script2.type = "text/javascript";
+        script2.setAttribute("async", "");
+        script2.setAttribute("id", "chart");
+        script2.text = JSON.stringify(chart);
+        script2.src =
+          "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+        document.getElementById("chartDiv").appendChild(script2);
+        gotoBrief();
+      }
+      function gotoFin() {
+        var element1 = document.getElementById("info");
+        if (element1 != null) {
+          element1.parentNode.removeChild(element1);
         }
+        var script = document.createElement("script");
+
+        var e = document.getElementById("ddlViewBy");
+        var ticker = e.options[e.selectedIndex].value;
+
+        script.src =
+          "https://s3.tradingview.com/external-embedding/embed-widget-financials.js";
+        info = {
+          symbol: ticker,
+          colorTheme: "light",
+          isTransparent: true,
+          largeChartUrl: "",
+          displayMode: "compact",
+          width: "100%",
+          height: "100%",
+          locale: "en",
+        };
+        script.type = "text/javascript";
+        script.setAttribute("async", "");
+        script.setAttribute("id", "info");
+        script.text = JSON.stringify(info);
+        document.getElementById("infoDiv").appendChild(script);
+
+        document.getElementById("menu").setAttribute("hidden", "false");
+      }
+
+      function gotoTech() {
+        var element1 = document.getElementById("info");
+        if (element1 != null) {
+          element1.parentNode.removeChild(element1);
+        }
+        var script = document.createElement("script");
+
+        var e = document.getElementById("ddlViewBy");
+        var ticker = e.options[e.selectedIndex].value;
+
+        script.src =
+          "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js";
+        info = {
+          symbol: ticker,
+          interval: "1W",
+          width: "100%",
+          height: "100%",
+          isTransparent: true,
+          showIntervalTabs: true,
+          locale: "en",
+          colorTheme: "light",
+        };
+        script.type = "text/javascript";
+        script.setAttribute("async", "");
+        script.setAttribute("id", "info");
+        script.text = JSON.stringify(info);
+        document.getElementById("infoDiv").appendChild(script);
+
+        document.getElementById("menu").style.display = "block";
+      }
+
+      function gotoBrief() {
+        var element1 = document.getElementById("info");
+        if (element1 != null) {
+          element1.parentNode.removeChild(element1);
+        }
+        var script = document.createElement("script");
+
+        var e = document.getElementById("ddlViewBy");
+        var ticker = e.options[e.selectedIndex].value;
+
+        script.src =
+          "https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js";
+        info = {
+          symbol: ticker,
+          width: "100%",
+          height: "100%",
+          colorTheme: "light",
+          isTransparent: false,
+          locale: "en",
+        };
+        script.type = "text/javascript";
+        script.setAttribute("async", "");
+        script.setAttribute("id", "info");
+        script.text = JSON.stringify(info);
+        document.getElementById("infoDiv").appendChild(script);
+
+        document.getElementById("menu").style.display = "block";
+      }
     </script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</head>
-<body>
-<nav class="navbar navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1">Mike's Indicators</span>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="content-desktop">
+      <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">Mike's Indicators</span>
+      </nav>
+
+      <div class="jumbotron">
+        <h1 class="display-4">Please visit the website from your phone.</h1>
+        <p class="lead">Sorry for the inconvenience</p>
+        <hr class="my-4">
+        <p>We are working on hard to bring you the best experience possible so please bear with us.</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="https://www.michaelazer.com" role="button">Learn more</a>
+        </p>
+      </div>
+    </div>
+    <div id="content-mobile">
+      <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">Mike's Indicators</span>
         <form class="form-inline my-2 my-lg-0">
-            <select id="ddlViewBy" onchange="updateChart()" class="custom-select">
-                <option value="" selected="selected">Pick ticker</option>
-                <option value="AMEX:SPY">SPY</option>
-                <option value="NASDAQ:AAPL">AAPL</option>
-                <option value="NASDAQ:FB">FB</option>
-                <option value="NASDAQ:MSFT">MSFT</option>
-                <option value="NASDAQ:NFLX">NFLX</option>
-                <option value="NASDAQ:AMZN">AMZN</option>
-                <option value="NASDAQ:GOOG">GOOG</option>
-            </select>
+          <select id="ddlViewBy" onchange="updateChart()" class="custom-select">
+            <option value="" selected="selected">Pick ticker</option>
+            <option value="AMEX:SPY">SPY</option>
+            <option value="NASDAQ:AAPL">AAPL</option>
+            <option value="NASDAQ:FB">FB</option>
+            <option value="NASDAQ:MSFT">MSFT</option>
+            <option value="NASDAQ:NFLX">NFLX</option>
+            <option value="NASDAQ:AMZN">AMZN</option>
+            <option value="NASDAQ:GOOG">GOOG</option>
+          </select>
         </form>
-</nav>
+      </nav>
 
-<div>
-    <div style="height:150px;">
-        <div id ="chartDiv" class="tradingview-widget-container">
+      <div>
+        <div style="height: 150px;">
+          <div id="chartDiv" class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
+          </div>
         </div>
-    </div>
-    
-    <div id="menu" class="d-flex bd-highlight" style="text-align: center; display: none;">
-        <div class="p-2 flex-fill bd-highlight"><a class="page-link m-0" href="#" onclick="gotoBrief()">Profile</a></div>
-        <div class="p-2 flex-fill bd-highlight"><a class="page-link m-0" href="#" onclick="gotoFin()">Financial</a></div>
-        <div class="p-2 flex-fill bd-highlight"><a class="page-link m-0" href="#" onclick="gotoTech()">Technical</a></div>
-    </div>
 
-    <div style="height:500px;">
-        <div id="infoDiv" class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
+        <div
+          id="menu"
+          class="d-flex bd-highlight"
+          style="text-align: center; display: none;"
+        >
+          <div class="p-2 flex-fill bd-highlight">
+            <a class="page-link m-0" href="#" onclick="gotoBrief()">Profile</a>
+          </div>
+          <div class="p-2 flex-fill bd-highlight">
+            <a class="page-link m-0" href="#" onclick="gotoFin()">Financial</a>
+          </div>
+          <div class="p-2 flex-fill bd-highlight">
+            <a class="page-link m-0" href="#" onclick="gotoTech()">Technical</a>
+          </div>
         </div>
+
+        <div style="height: 500px;">
+          <div id="infoDiv" class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

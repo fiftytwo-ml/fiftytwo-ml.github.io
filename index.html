@@ -109,7 +109,7 @@
       function gotoBrief() {
         var element1 = document.getElementById("infoDiv");
         if (element1 != null) {
-          element1.innerHTML="";
+          element1.innerHTML = "";
           element1.style.overflow = "visible";
         }
         var script = document.createElement("script");
@@ -135,20 +135,22 @@
 
         document.getElementById("menu").style.visibility = "visible";
       }
-      
+
       function gotoNews() {
         var element1 = document.getElementById("infoDiv");
         if (element1 != null) {
-          element1.innerHTML="";
+          element1.innerHTML = "";
           element1.style.overflow = "scroll";
         }
         var script = document.createElement("script");
 
         var e = document.getElementById("ddlViewBy");
         var ticker = e.options[e.selectedIndex].value;
-        var tick = ticker.split(':')[1]
+        var tick = ticker.split(":")[1];
         script.src =
-          "https://rss.bloople.net/?url=http%3A%2F%2Ffinance.yahoo.com%2Frss%2Fheadline%3Fs%3D"+tick+"&showtitle=false&type=js";
+          "https://rss.bloople.net/?url=http%3A%2F%2Ffinance.yahoo.com%2Frss%2Fheadline%3Fs%3D" +
+          tick +
+          "&showtitle=false&type=js";
         script.type = "text/javascript";
         // script.setAttribute("async", "");
         script.setAttribute("id", "info");
@@ -164,7 +166,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"
+      rel="stylesheet"
+    />
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -180,7 +185,20 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-    <script src="//rss.bloople.net/?url=http%3A%2F%2Ffinance.yahoo.com%2Frss%2Fheadline%3Fs%3Daapl&showtitle=false&type=js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-169880163-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-169880163-1");
+    </script>
   </head>
   <body>
     <div id="content-desktop">
@@ -191,10 +209,18 @@
       <div class="jumbotron">
         <h1 class="display-4">Please visit the website from your phone.</h1>
         <p class="lead">Sorry for the inconvenience</p>
-        <hr class="my-4">
-        <p>We are working on hard to bring you the best experience possible so please bear with us.</p>
+        <hr class="my-4" />
+        <p>
+          We are working on hard to bring you the best experience possible so
+          please bear with us.
+        </p>
         <p class="lead">
-          <a class="btn btn-primary btn-lg" href="https://www.michaelazer.com" role="button">Learn more</a>
+          <a
+            class="btn btn-primary btn-lg"
+            href="https://www.michaelazer.com"
+            role="button"
+            >Learn more</a
+          >
         </p>
       </div>
     </div>

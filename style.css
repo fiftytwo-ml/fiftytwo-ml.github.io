@@ -2,8 +2,11 @@
 #content-mobile {display: none;}
 
 @media screen and (max-width: 768px) {
+    #content-desktop {display: none;}
+    #content-mobile {display: block;}
+}
 
-#content-desktop {display: none;}
-#content-mobile {display: block;}
-
+.title {
+    font-family: 'Poiret One', cursive;
+    font-size: 200%;
 }

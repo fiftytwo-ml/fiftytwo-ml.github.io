@@ -10,3 +10,21 @@
     font-family: 'Poiret One', cursive;
     font-size: 200%;
 }
+
+.feed-item-title {
+    margin: 10px 20px 0px 20px;
+    font-size: 17px;
+}
+/* .feed-item-title a {
+    color: black;
+} */
+
+.feed-item-desc {
+    margin: 0px 20px 10px 20px;
+    padding-bottom: 10px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #dee2e6;
+}

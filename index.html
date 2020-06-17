@@ -43,9 +43,10 @@
         gotoBrief();
       }
       function gotoFin() {
-        var element1 = document.getElementById("info");
+        var element1 = document.getElementById("infoDiv");
         if (element1 != null) {
-          element1.parentNode.removeChild(element1);
+          element1.innerHTML = "";
+          element1.style.overflow = "visible";
         }
         var script = document.createElement("script");
 
@@ -74,9 +75,10 @@
       }
 
       function gotoTech() {
-        var element1 = document.getElementById("info");
+        var element1 = document.getElementById("infoDiv");
         if (element1 != null) {
-          element1.parentNode.removeChild(element1);
+          element1.innerHTML = "";
+          element1.style.overflow = "visible";
         }
         var script = document.createElement("script");
 
@@ -101,13 +103,14 @@
         script.text = JSON.stringify(info);
         document.getElementById("infoDiv").appendChild(script);
 
-        document.getElementById("menu").style.display = "block";
+        document.getElementById("menu").style.visibility = "visible";
       }
 
       function gotoBrief() {
-        var element1 = document.getElementById("info");
+        var element1 = document.getElementById("infoDiv");
         if (element1 != null) {
-          element1.parentNode.removeChild(element1);
+          element1.innerHTML="";
+          element1.style.overflow = "visible";
         }
         var script = document.createElement("script");
 
@@ -130,7 +133,28 @@
         script.text = JSON.stringify(info);
         document.getElementById("infoDiv").appendChild(script);
 
-        document.getElementById("menu").style.display = "block";
+        document.getElementById("menu").style.visibility = "visible";
+      }
+      
+      function gotoNews() {
+        var element1 = document.getElementById("infoDiv");
+        if (element1 != null) {
+          element1.innerHTML="";
+          element1.style.overflow = "scroll";
+        }
+        var script = document.createElement("script");
+
+        var e = document.getElementById("ddlViewBy");
+        var ticker = e.options[e.selectedIndex].value;
+        var tick = ticker.split(':')[1]
+        script.src =
+          "http://rss.bloople.net/?url=http%3A%2F%2Ffinance.yahoo.com%2Frss%2Fheadline%3Fs%3D"+tick+"&showtitle=false&type=js";
+        script.type = "text/javascript";
+        // script.setAttribute("async", "");
+        script.setAttribute("id", "info");
+        document.getElementById("infoDiv").appendChild(script);
+
+        document.getElementById("menu").style.visibility = "visible";
       }
     </script>
     <link
@@ -156,6 +180,7 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script src="//rss.bloople.net/?url=http%3A%2F%2Ffinance.yahoo.com%2Frss%2Fheadline%3Fs%3Daapl&showtitle=false&type=js"></script>
   </head>
   <body>
     <div id="content-desktop">
@@ -173,6 +198,7 @@
         </p>
       </div>
     </div>
+
     <div id="content-mobile">
       <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1 title">FiftyTwo</span>
@@ -200,16 +226,19 @@
         <div
           id="menu"
           class="d-flex bd-highlight"
-          style="text-align: center; display: none;"
+          style="text-align: center; visibility: hidden;"
         >
-          <div class="p-2 flex-fill bd-highlight">
+          <div class="p-1 flex-fill bd-highlight">
             <a class="page-link m-0" href="#" onclick="gotoBrief()">Profile</a>
           </div>
-          <div class="p-2 flex-fill bd-highlight">
+          <div class="p-1 flex-fill bd-highlight">
             <a class="page-link m-0" href="#" onclick="gotoFin()">Financial</a>
           </div>
-          <div class="p-2 flex-fill bd-highlight">
+          <div class="p-1 flex-fill bd-highlight">
             <a class="page-link m-0" href="#" onclick="gotoTech()">Technical</a>
+          </div>
+          <div class="p-1 flex-fill bd-highlight">
+            <a class="page-link m-0" href="#" onclick="gotoNews()">News</a>
           </div>
         </div>
 
